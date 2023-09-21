@@ -2,6 +2,10 @@
 secret.py
 # settings.py
 
+# Gunicorn
+gunicorn.sh
+gunicorn_config.conf
+
 # Environments
 .env
 .venv
