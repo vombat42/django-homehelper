@@ -2,6 +2,9 @@
 secret.py
 # settings.py
 
+/static/*
+/static/
+
 # Gunicorn
 gunicorn.sh
 gunicorn_config.conf
