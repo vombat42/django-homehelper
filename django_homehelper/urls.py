@@ -25,4 +25,5 @@ urlpatterns = [
 ]
 
 
-handler404 = 'django_homehelper.views.page_not_found'
+# handler404 = 'django_homehelper.views.page_not_found'
+handler404 = page_not_found
