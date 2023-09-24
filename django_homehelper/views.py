@@ -11,6 +11,6 @@ def index(request):
 	return render(request, 'main/index.html', data)
 
 
-def page_not_found(request, exeption=None):
+def page_not_found(request, exception=None):
 	print ('--> page_not_found')
 	return HttpResponseNotFound('Упс, страница не найдена')
