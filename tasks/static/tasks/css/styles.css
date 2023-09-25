@@ -1,3 +1,44 @@
+body {
+	background: #212f3d;
+	color: #D3D3D3;
+}
+
 h1 {
-	color: blue;
+	color:  #82e0aa;
+}
+
+a {
+	color: #87CEFA;
+}
+
+a:active {
+	color: green;
+}
+
+a:visited {
+	color: #9370DB;
+}
+
+
+a:hover {
+	color: #00BFFF;
+}
+
+.title {
+	color: green;
+	font-size: 30px;
+}
+
+.content {
+	color: #D8BFD8;
+	font-size: 20px;
+}
+
+.id {
+	font-size: 12px;
+}
+
+.time {
+	color: #FFE4B5;
+	font-size: 14px;
 }

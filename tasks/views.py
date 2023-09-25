@@ -1,27 +1,58 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from rest_framework import generics
 from .models import Tasks
 from .serializers import TasksSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
+
 # --------------------------------------
 
+menu = [
+	{'title':'Задачи', 'url_name': 'tasks_main'},
+	{'title':'О приложении', 'url_name': 'tasks_about'},
+	{'title':'Помощь', 'url_name': 'tasks_help'},
+	{'title':'API', 'url_name': 'tasks_apiview'},
+	{'title':'Админка', 'url_name': 'admin:index'},
+]
+
 def index(request):
+	tasks = Tasks.objects.all()
 	data = {
-		'title':'tasks main',
-		'styles':'tasks/css/styles.css',
+		'title': 'tasks main',
+		'styles': 'tasks/css/styles.css',
+		'menu': menu,
+		'tasks': tasks,
 	}
 	return render(request, 'tasks/index.html', data)
 
 
-def help(request):
-	return HttpResponse('<h1>Помощь по TASKS</h1>')
+def show_one_task(request, task_id):
+	task = get_object_or_404(Tasks, pk=task_id)
+	data = {
+		'title': 'task details',
+		'styles': 'tasks/css/styles.css',
+		'menu': menu,
+		'task' : task,
+	}
+	return render(request, 'tasks/details.html', data)
 
+
+def help(request):
+	data = {
+		'title':'help tasks',
+		'styles':'tasks/css/styles.css',
+		'menu': menu,
+	}
+	return render(request, 'tasks/help.html', data)
 
 def about(request):
-	return HttpResponse('<h1>About TASKS</h1>')
-
+	data = {
+		'title':'about tasks',
+		'styles':'tasks/css/styles.css',
+		'menu': menu,
+	}
+	return render(request, 'tasks/about.html', data)
 
 class TasksAPIViewList(generics.ListCreateAPIView):
 	queryset = Tasks.objects.all()

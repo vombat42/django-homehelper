@@ -12,5 +12,4 @@ def index(request):
 
 
 def page_not_found(request, exception=None):
-	print ('--> page_not_found')
 	return HttpResponseNotFound('Упс, страница не найдена')

@@ -1,6 +1,15 @@
-{% extends 'base.html' %}
+{% extends 'tasks/base_temp.html' %}
 
 {% block content %}
   <h1>Главная страница TASKS</h1>
   <p>template</p>
+  {% for t in tasks %}
+    <p class="title">{{ t.title }}</p>
+    <!-- <p class="id">{{ t.id }}</p> -->
+    <p class="content">{{ t.content }}</p>
+    <p class="time">{{ t.time_create }}</p>
+    <p class="time">{{ t.time_update }}</p>
+    <!-- <p>{{ t.is_done }}</p> -->
+    <hr />
+  {% endfor %}
 {% endblock %}
