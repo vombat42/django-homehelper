@@ -1,10 +1,9 @@
 from rest_framework import serializers
-from .models import Tasks
+from .models import Task
 
 # ------------------------------------------
 
-class TasksSerializer(serializers.ModelSerializer):
+class TaskSerializer(serializers.ModelSerializer):
 	class Meta:
-		model = Tasks
-		# fields = ('title', 'is_done')
+		model = Task
 		fields = "__all__"

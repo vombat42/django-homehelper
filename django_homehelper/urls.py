@@ -27,3 +27,7 @@ urlpatterns = [
 
 # handler404 = 'django_homehelper.views.page_not_found'
 handler404 = page_not_found
+
+# Настройка админ панели
+admin.site.site_header = 'Панель администрирования сайта'
+admin.site.index_title = 'Приложение "Задачи"'

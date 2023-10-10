@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from rest_framework import generics
-from .models import Tasks
-from .serializers import TasksSerializer
+from .models import Task
+from .serializers import TaskSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -17,7 +17,7 @@ menu = [
 ]
 
 def index(request):
-	tasks = Tasks.objects.all()
+	tasks = Task.objects.all()
 	data = {
 		'title': 'tasks main',
 		'styles': 'tasks/css/styles.css',
@@ -28,7 +28,7 @@ def index(request):
 
 
 def show_one_task(request, task_id):
-	task = get_object_or_404(Tasks, pk=task_id)
+	task = get_object_or_404(Task, pk=task_id)
 	data = {
 		'title': 'task details',
 		'styles': 'tasks/css/styles.css',
@@ -55,19 +55,19 @@ def about(request):
 	return render(request, 'tasks/about.html', data)
 
 class TasksAPIViewList(generics.ListCreateAPIView):
-	queryset = Tasks.objects.all()
-	serializer_class = TasksSerializer	
+	queryset = Task.objects.all()
+	serializer_class = TaskSerializer	
 
 class TasksAPIView(APIView):
-	queryset = Tasks.objects.all()
-	serializer_class = TasksSerializer
+	queryset = Task.objects.all()
+	serializer_class = TaskSerializer
 
 	def get(self, request):
-		w = Tasks.objects.all()
-		return Response({'posts': TasksSerializer(w, many=True).data})
+		w = Task.objects.all()
+		return Response({'posts': TaskSerializer(w, many=True).data})
 
 	def post(self, request):
-		serializer = TasksSerializer(data=request.data)
+		serializer = TaskSerializer(data=request.data)
 		serializer.is_valid(raise_exception=True)
 		serializer.save()
 		
@@ -80,11 +80,11 @@ class TasksAPIView(APIView):
 			return Response({"error": "Method PUT not allowed"})
 
 		try:
-			instance = Women.objects.get(pk=pk)
+			instance = Task.objects.get(pk=pk)
 		except:
 			return Response({"error": "Object does not exists"})
 
-		serializer = TasksSerializer(data=request.data, instance=instance)
+		serializer = TaskSerializer(data=request.data, instance=instance)
 		serializer.is_valid(raise_exception=True)
 		serializer.save()
 		return Response({"post": serializer.data})
