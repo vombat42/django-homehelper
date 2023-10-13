@@ -1,5 +1,6 @@
 # Django stuff:
 secret.py
+debug_toolbar_settings.py
 # settings.py
 
 /static/*

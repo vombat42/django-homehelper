@@ -2,14 +2,15 @@
 
 {% block content %}
   <h1>Главная страница TASKS</h1>
-  <p>template</p>
+  <hr />
   {% for t in tasks %}
-    <p class="title">{{ t.title }}</p>
+    <!-- <p class="title">{{ t.title }}</p> -->
     <!-- <p class="id">{{ t.id }}</p> -->
-    <p class="content">{{ t.content }}</p>
-    <p class="time">{{ t.time_create }}</p>
-    <p class="time">{{ t.time_update }}</p>
-    <!-- <p>{{ t.is_done }}</p> -->
+    <a class="title" href="{{ t.get_absolute_url }}">{{ t.title }}</a>
+    <p class="status">{{ t.get_status }}</p>
+    <p class="content">{{ t.description }}</p>
+    <p class="time">Создана {{ t.time_create }}</p>
+    <p class="time">Обновлена {{ t.time_update }}</p>
     <hr />
   {% endfor %}
 {% endblock %}

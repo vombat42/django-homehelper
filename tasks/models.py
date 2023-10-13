@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # --------------------------------------------
 
@@ -7,7 +8,8 @@ class Task(models.Model):
 		DRAFT = 0, "Черновик"
 		NEW = 1, "Новая"
 		PROCESS = 2, "Выполняется"
-		DONE = 3, "Выполнена"
+		LOOP = 3, "Периодическая"
+		DONE = 9, "Выполнена"
 
 	title = models.CharField(max_length=30, verbose_name='Заголовок')
 	category = models.ForeignKey('Category', on_delete=models.PROTECT, verbose_name='Категория')
@@ -15,7 +17,7 @@ class Task(models.Model):
 	status = models.IntegerField(choices=Status.choices, default=Status.DRAFT, verbose_name='Статус')
 	time_create = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
 	time_update = models.DateTimeField(auto_now=True, verbose_name='Последнее изменение')
-	time_deadline = models.DateTimeField(verbose_name='Срок выполнения')
+	time_deadline = models.DateTimeField(verbose_name='Срок выполнения', blank=True, null=True)
 	slug = models.SlugField(unique=True,db_index=True, verbose_name='Slug')
 
 	def __str__(self):
@@ -25,13 +27,17 @@ class Task(models.Model):
 		verbose_name = "Задача"
 		verbose_name_plural = "Задачи"
 		ordering = ['-time_create']
-		indexes = [
-			models.Index(fields=['-time_create'])
-		]
+		indexes = [models.Index(fields=['-time_create'])]
+
+	def get_absolute_url(self):
+		return reverse('task_details',kwargs={'task_id': self.id})
+
+	def get_status(self):
+		return self.Status(self.status).label
 
 
 class Category(models.Model):
-	name = models.CharField(max_length=20, verbose_name='Наименование категории')
+	name = models.CharField(max_length=20, verbose_name='Категория')
 	slug = models.SlugField(unique=True,db_index=True, verbose_name='Slug')
 
 	def __str__(self):

@@ -24,6 +24,11 @@ urlpatterns = [
     path('tasks/', include('tasks.urls')),
 ]
 
+# add debug toolbar only for DEBUG mode
+from .settings import DEBUG
+if DEBUG:
+    urlpatterns.append(path("__debug__/", include("debug_toolbar.urls")))
+    print ('************************')
 
 # handler404 = 'django_homehelper.views.page_not_found'
 handler404 = page_not_found

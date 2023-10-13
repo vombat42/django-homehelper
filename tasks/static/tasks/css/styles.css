@@ -24,9 +24,16 @@ a:hover {
 	color: #00BFFF;
 }
 
-.title {
+a.title {
+	text-decoration: none;
 	color: green;
 	font-size: 30px;
+}
+
+a.title:hover {
+/*	text-decoration: none;*/
+	color: #00BFFF;
+/*	font-size: 30px;*/
 }
 
 .content {
@@ -40,5 +47,10 @@ a:hover {
 
 .time {
 	color: #FFE4B5;
+	font-size: 12px;
+}
+
+.status {
+	color: #9370DB;
 	font-size: 14px;
 }

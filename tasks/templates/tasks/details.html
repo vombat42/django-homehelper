@@ -2,7 +2,9 @@
 
 {% block content %}
   <h1>{{ task.title }}</h1>
-  <p>id ={{ task.id }}:</p>
   <br />
-  <p>{{ task.content }}:</p>
+  <p>{{ task.description }}</p>
+  <p>{{ task.get_status }}</p>
+  <p>{{ task.time_create }}</p>
+  <p>{{ task.time_update }}</p>
 {% endblock %}
