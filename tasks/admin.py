@@ -31,6 +31,7 @@ class TaskAdmin(admin.ModelAdmin):
     list_per_page = 10
     search_fields = ('title','category__name',)
     list_filter = (DeadlineFilter, 'category__name','status',)
+    save_on_top = True
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):

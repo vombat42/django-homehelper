@@ -1,0 +1,10 @@
+{% extends 'tasks/base_temp.html' %}
+
+{% block content %}
+  <h1>Добавление задачи</h1>
+  <form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p><button type="submit">Добавить задачу</button></p>
+  </form>
+{% endblock %}

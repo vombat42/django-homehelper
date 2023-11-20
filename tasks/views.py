@@ -1,7 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from rest_framework import generics
 from .models import Task
+from .forms import AddTaskForm
+# from .urls import urlpatterns
 from .serializers import TaskSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -10,6 +12,7 @@ from rest_framework.response import Response
 
 menu = [
 	{'title':'Задачи', 'url_name': 'tasks_main'},
+	{'title':'Добавить задачу', 'url_name': 'tasks_add'},
 	{'title':'О приложении', 'url_name': 'tasks_about'},
 	{'title':'Помощь', 'url_name': 'tasks_help'},
 	{'title':'API', 'url_name': 'tasks_apiview'},
@@ -38,6 +41,24 @@ def show_one_task(request, task_id):
 	return render(request, 'tasks/details.html', data)
 
 
+def add(request):
+	if request.method == 'POST':
+		form = AddTaskForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return redirect('tasks_main')
+	else:
+		form = AddTaskForm()
+	
+	data = {
+		'title': 'task details',
+		'styles': 'tasks/css/styles.css',
+		'menu': menu,
+		'form': form,
+	}
+	return render(request, 'tasks/add.html', data)
+
+
 def help(request):
 	data = {
 		'title':'help tasks',
@@ -45,6 +66,7 @@ def help(request):
 		'menu': menu,
 	}
 	return render(request, 'tasks/help.html', data)
+
 
 def about(request):
 	data = {
@@ -54,9 +76,11 @@ def about(request):
 	}
 	return render(request, 'tasks/about.html', data)
 
+
 class TasksAPIViewList(generics.ListCreateAPIView):
 	queryset = Task.objects.all()
 	serializer_class = TaskSerializer	
+
 
 class TasksAPIView(APIView):
 	queryset = Task.objects.all()
