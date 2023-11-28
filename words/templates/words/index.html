@@ -1,0 +1,19 @@
+{% extends 'words/base_temp.html' %}
+
+{% block content %}
+  <h1>Главная страница WORDS</h1>
+  <hr />
+  <form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p><button type="submit">Начать</button></p>
+  </form>
+<!--   {% for t in tasks %}
+    <a class="title" href="{{ t.get_absolute_url }}">{{ t.title }}</a>
+    <p class="status">{{ t.get_status }}</p>
+    <p class="content">{{ t.description }}</p>
+    <p class="time">Создана {{ t.time_create }}</p>
+    <p class="time">Обновлена {{ t.time_update }}</p>
+    <hr />
+  {% endfor %} -->
+{% endblock %}

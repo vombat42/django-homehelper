@@ -1,0 +1,27 @@
+{% extends 'words/base_temp.html' %}
+{% load static %}
+
+{% block scripts %}
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+{% endblock %}
+
+{% block content %}
+  <h1>Упражнение</h1>
+  <hr />
+  {% for w in words %}
+    <p>{{ w }}</p>
+  {% endfor %}
+  <hr />
+  <hr />
+
+  <div id="word">
+    <p>VUE</p>
+
+     <div id="word_voice" class="btn btn-success btn-lg">
+      слово:<strong>[[word]]</strong>
+    </div>
+
+  </div> 
+
+  <script src="{% static 'words/js/exercise.js' %}"></script>
+{% endblock %}

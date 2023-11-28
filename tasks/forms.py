@@ -1,4 +1,3 @@
-
 from django import forms
 from .models import Task, Category
 from django.core.exceptions import ValidationError

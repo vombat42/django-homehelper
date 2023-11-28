@@ -36,4 +36,4 @@ handler404 = page_not_found
 
 # Настройка админ панели
 admin.site.site_header = 'Панель администрирования сайта'
-admin.site.index_title = 'Приложение "Задачи"'
+admin.site.index_title = 'Приложения "Задачи" и "Слова"'

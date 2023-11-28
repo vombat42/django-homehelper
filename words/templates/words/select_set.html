@@ -1,0 +1,20 @@
+{% extends 'words/base_temp.html' %}
+
+{% block content %}
+  <h1>Выбор набора слов для занятия</h1>
+  <hr />
+  <p>{{word_set}}</p>
+  <hr />
+
+  <form action="{% url 'words_exercise' %}" method="post">
+    {% csrf_token %}
+    {% for ws in word_set %}
+      <p><input type="checkbox" name="set{{ ws.id }}" value="{{ ws.id }}">{{ ws }}</p>
+      <p style="color:blue">{{ word_set.ws }}</p>
+      {% for word in ws.words.all %}
+        <p style="color:red">{{ word }}</p>
+      {% endfor%}
+    {% endfor%}
+    <p><button type="submit">Начать</button></p>
+  </form>
+{% endblock %}
