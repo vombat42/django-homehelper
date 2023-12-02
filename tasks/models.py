@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth import get_user_model
 
 # --------------------------------------------
 
@@ -14,6 +15,7 @@ class Task(models.Model):
 	title = models.CharField(max_length=30, verbose_name='Заголовок')
 	category = models.ForeignKey('Category', on_delete=models.PROTECT, verbose_name='Категория')
 	description = models.TextField(blank=True, verbose_name='Описание')
+	author = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, related_name='tasks', null=True, default=None, verbose_name='Автор')
 	status = models.IntegerField(choices=Status.choices, default=Status.DRAFT, verbose_name='Статус')
 	time_create = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
 	time_update = models.DateTimeField(auto_now=True, verbose_name='Последнее изменение')

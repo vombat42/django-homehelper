@@ -2,10 +2,13 @@ from django import forms
 from .models import Task, Category
 from django.core.exceptions import ValidationError
 
+# --------------------------------------------------------
+
 class AddTaskForm(forms.ModelForm):
 	class Meta:
 		model = Task
-		fields = '__all__'
+		# fields = '__all__'
+		fields = ['title', 'category', 'description', 'status','time_deadline', 'slug']
 		labels = {'slug': 'URL'}
 
 	def clean_title(self):

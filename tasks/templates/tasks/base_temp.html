@@ -16,10 +16,10 @@
     {% endfor %}
     {% if user.is_authenticated%}
       <p style="color: green">{{ user.username }}</p>
-      <a href="{% url 'users:users_logout' %}">Выход</a>
+      <a href="{% url 'users:logout' %}">Выход</a>
     {% else %}
-      <a href="{% url 'users:users_login' %}">Вход</a>
-      <a href="#">Регистрация</a>
+      <a href="{% url 'users:login' %}">Вход</a>
+      <a href="{% url 'users:register' %}">Регистрация</a>
     {% endif %}
   </nav>
 {% endblock %}

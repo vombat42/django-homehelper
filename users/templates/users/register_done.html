@@ -1,0 +1,10 @@
+{% extends 'users/base_temp.html' %}
+
+{% block content %}
+  <h1>Добро пожаловать!</h1>
+  <hr />
+  <p>Вы успешно зарегистрировались на нашем сайте.</p>
+  <p>
+    <a href="{% url 'users:login' %}">Авторизуйтесь</a>для входа в систему.
+  </p>
+{% endblock %}

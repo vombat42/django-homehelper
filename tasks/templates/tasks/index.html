@@ -7,6 +7,7 @@
     <!-- <p class="title">{{ t.title }}</p> -->
     <!-- <p class="id">{{ t.id }}</p> -->
     <a class="title" href="{{ t.get_absolute_url }}">{{ t.title }}</a>
+    <p class="author">автор: {{ t.author.username|default:"неизвестен" }}</p>
     <p class="status">{{ t.get_status }}</p>
     <p class="content">{{ t.description }}</p>
     <p class="time">Создана {{ t.time_create }}</p>
