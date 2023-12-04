@@ -15,7 +15,7 @@
       <a href="{% url m.url_name %}">{{ m.title }}</a>
     {% endfor %}
     {% if user.is_authenticated%}
-      <p style="color: green">{{ user.username }}</p>
+      <p ><a target="_blank" style="color: green" href="{% url 'users:profile' %}">{{ user.username }}</a></p>
       <a href="{% url 'users:logout' %}">Выход</a>
     {% else %}
       <a href="{% url 'users:login' %}">Вход</a>

@@ -20,16 +20,16 @@ class RegisterUserForm(UserCreationForm):
 
 	class Meta:
 		model = get_user_model()
-		fields = ['username', 'email', 'first_name', 'first_name', 'password1', 'password2']
+		fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2']
 		labels = {
 			'email': 'E-mail',
 			'first_name': 'Имя',
-			'first_name': 'Фамилия',
+			'last_name': 'Фамилия',
 		}
 		widgets = {
 			'email': forms.TextInput(attrs={'class': 'form-input'}),
 			'first_name': forms.TextInput(attrs={'class': 'form-input'}),
-			'first_name': forms.TextInput(attrs={'class': 'form-input'}),
+			'last_name': forms.TextInput(attrs={'class': 'form-input'}),
 		}
 
 	def clean_email(self):
@@ -38,3 +38,19 @@ class RegisterUserForm(UserCreationForm):
 			raise forms.ValidationError('E-mail не уникальный!')
 		return email
 
+
+class ProfileUserForm(forms.ModelForm):
+	username = forms.CharField(disabled=True, label='Логин', widget=forms.TextInput(attrs={'class': 'form-input'}))
+	email = forms.CharField(disabled=True, label='E-mail', widget=forms.TextInput(attrs={'class': 'form-input'}))
+	
+	class Meta:
+		model = get_user_model()
+		fields = ['username', 'email', 'first_name', 'last_name']
+		labels = {
+			'first_name': 'Имя',
+			'last_name': 'Фамилия',
+		}
+		widgets = {
+			'first_name': forms.TextInput(attrs={'class': 'form-input'}),
+			'last_name': forms.TextInput(attrs={'class': 'form-input'}),
+		}
