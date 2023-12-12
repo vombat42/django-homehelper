@@ -32,7 +32,7 @@ class Task(models.Model):
 		indexes = [models.Index(fields=['-time_create'])]
 
 	def get_absolute_url(self):
-		return reverse('task_details',kwargs={'task_id': self.id})
+		return reverse('task-details',kwargs={'task_id': self.id})
 
 	def get_status(self):
 		return self.Status(self.status).label

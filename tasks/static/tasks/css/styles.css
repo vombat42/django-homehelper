@@ -26,7 +26,7 @@ a:hover {
 
 a.title {
 	text-decoration: none;
-	color: green;
+	color: greenyellow;
 	font-size: 30px;
 }
 
@@ -52,5 +52,10 @@ a.title:hover {
 
 .status {
 	color: #9370DB;
+	font-size: 14px;
+}
+
+.category {
+	color: green;
 	font-size: 14px;
 }

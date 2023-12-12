@@ -138,8 +138,8 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = BASE_DIR / 'media'
 
-LOGIN_REDIRECT_URL = 'tasks_main'
-LOGOUT_REDIRECT_URL = 'tasks_main'
+LOGIN_REDIRECT_URL = 'tasks-main'
+LOGOUT_REDIRECT_URL = 'tasks-main'
 LOGIN_URL = 'users:login'
 
 AUTHENTICATION_BACKENDS = [
@@ -147,18 +147,29 @@ AUTHENTICATION_BACKENDS = [
     'users.authentication.EmailAuthBackend',
     ]
 
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+EMAIL_HOST = "smtp.yandex.ru"
+EMAIL_HOST_PORT = 465
+EMAIL_HOST_USER = my_email_host_user
+EMAIL_HOST_PASSWORD = my_email_host_password
+# EMAIL_USE_SSL = True
+EMAIL_USE_TLS = True
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = EMAIL_HOST_USER
+EMAIL_ADMIN = EMAIL_HOST_USER
+
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-REST_FRAMEWORK = {
-    'DEFAULT_RENDERER_CLASSES': [
-        'rest_framework.renderers.JSONRenderer',
-        'rest_framework.renderers.BrowsableAPIRenderer',
-    ]
-}
+REST_FRAMEWORK = my_drf_rendered_classes
 
 # add debug toolbar only for DEBUG mode
 if DEBUG:
