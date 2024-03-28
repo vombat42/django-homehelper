@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from .views import index, page_not_found
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
@@ -24,12 +25,17 @@ urlpatterns = [
     path('tasks/', include('tasks.urls')),
     path('words/', include('words.urls')),
     path('users/', include('users.urls', namespace='users')),
+    # path('progs/', include('progsbase.urls', namespace='progsbase')),
+    path('progsbase/', include('progsbase.urls')),
 ]
 
-# add debug toolbar only for DEBUG mode
-from .settings import DEBUG
+from .settings import DEBUG, MEDIA_URL, MEDIA_ROOT
 if DEBUG:
+    # add debug toolbar only for DEBUG mode
     urlpatterns.append(path("__debug__/", include("debug_toolbar.urls")))
+    
+    # for show media files in DEBUG mode
+    urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
 
 # handler404 = 'django_homehelper.views.page_not_found'
 handler404 = page_not_found

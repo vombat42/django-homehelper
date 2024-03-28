@@ -1,0 +1,8 @@
+{% if tags %}
+    <div>Теги:</div>
+    <div class="tags-list">
+        {% for t in tags %}
+            <a class="filter-tags" href="{{t.get_absolute_url}}">{{t.name}} - {{t.total}}</a>
+        {% endfor %}
+    </div>
+{% endif %}

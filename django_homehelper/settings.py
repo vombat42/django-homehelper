@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'tasks.apps.TasksConfig',
     'words.apps.WordsConfig',
     'users.apps.UsersConfig',
+    'progsbase.apps.ProgsbaseConfig',
 ]
 
 MIDDLEWARE = [
@@ -137,6 +138,7 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = 'tasks-main'
 LOGOUT_REDIRECT_URL = 'tasks-main'
@@ -168,8 +170,11 @@ EMAIL_ADMIN = EMAIL_HOST_USER
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-REST_FRAMEWORK = my_drf_rendered_classes
+REST_FRAMEWORK={}
+REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = my_drf_rendered_classes
+REST_FRAMEWORK['DEFAULT_PERMISSION_CLASSES'] = [
+    'rest_framework.permissions.IsAuthenticated',
+    ]
 
 # add debug toolbar only for DEBUG mode
 if DEBUG:

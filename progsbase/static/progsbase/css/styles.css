@@ -1,0 +1,65 @@
+body {
+	background: #212f3d;
+	color: #D3D3D3;
+}
+
+h1 {
+	color:  #82e0aa;
+}
+
+a {
+	color: #87CEFA;
+}
+
+a:active {
+	color: green;
+}
+
+a:visited {
+	color: #9370DB;
+}
+
+
+a:hover {
+	color: #00BFFF;
+}
+
+a.title {
+	text-decoration: none;
+	color: greenyellow;
+	font-size: 30px;
+}
+
+a.title:hover {
+/*	text-decoration: none;*/
+	color: #00BFFF;
+/*	font-size: 30px;*/
+}
+
+.content {
+	color: #D8BFD8;
+	font-size: 20px;
+}
+
+.id {
+	font-size: 12px;
+}
+
+.time {
+	color: #FFE4B5;
+	font-size: 12px;
+}
+
+.status {
+	color: #9370DB;
+	font-size: 14px;
+}
+
+.tags {
+	color: yellow;
+	font-size: 14px;
+}
+
+.img-details {
+	height: 300px;
+}

@@ -1,0 +1,26 @@
+{% extends 'progsbase/base_temp.html' %}
+{% load progs_tags %}
+
+{% block content %}
+  <h1>Главная страница ProgsBase</h1>
+  <hr />
+  {% show_all_langs %}
+  {% show_all_tags %}
+  <hr />
+  {% for t in progsbase %}
+    <a class="title" href="{{ t.get_absolute_url }}">{{ t.title }}</a>
+    <p class="author">автор: {{ t.author.username|default:"неизвестен" }}</p>
+    <p class="content">описание:{{ t.description }}</p>
+    <p class="content">программа:{{ t.text }}</p>
+    <p class="content">язык:{{ t.lang.name }}</p>
+    <p class="tags">теги:
+      {% for i in t.tags.all %}
+        #{{i.name}}
+      {% endfor %}
+    </p>
+
+    <p class="time">Создана {{ t.time_create }}</p>
+    <p class="time">Обновлена {{ t.time_update }}</p>
+    <hr />
+  {% endfor %}
+{% endblock %}

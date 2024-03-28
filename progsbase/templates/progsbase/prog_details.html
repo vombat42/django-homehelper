@@ -1,0 +1,29 @@
+{% extends 'progsbase/base_temp.html' %}
+
+{% block content %}
+  <h1>{{ prog.title }}</h1>
+  <br />
+  <p>{{ prog.description }}</p>
+  <p>{{ prog.lang }}</p>
+  <p>{{ prog.text }}</p>
+  <hr />
+  <pre>{{prog_text}}</pre>
+  <hr />
+  <p>{{ prog.author }}</p>
+  <p>{{ prog.time_create }}</p>
+  <p>{{ prog.time_update }}</p>
+  <p class="tags">
+    {% for i in prog.tags.all %}
+      #{{i.name}}
+    {% endfor %}
+  </p>
+  <p>картинки:</p>
+  {% for i in images %}
+    <p>{{i.description|default:"без описания"}}</p>
+    <img class="img-details" src="{{i.image.url}}">
+  {% endfor %}
+  {% for i in links %}
+    <p><a class="links-detail" href="{{i.link}}">ссылка - {{i.description|default:"без описания"}}</a></p>
+  {% endfor %}
+  
+{% endblock %}

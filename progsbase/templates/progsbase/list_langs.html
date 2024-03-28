@@ -1,0 +1,8 @@
+{% if langs %}
+    <div>Языки программирования:</div>
+    <div class="filter-lang-list">
+        {% for i in langs %}
+            <a class="filter-langs" href="{{i.get_absolute_url}}">{{i.name}}</a>
+        {% endfor %}
+    </div>
+{% endif %}
